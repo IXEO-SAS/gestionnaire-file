@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prendre un ticket</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #0078d7;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.3em;
+      color: #333;
+    }
+    #ticketNumber {
+      font-size: 8em;
+      font-weight: bold;
+      margin: 0.3em 0 1em;
+      user-select: none;
+    }
+    button {
+      font-size: 2em;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 8px;
+      background-color: #0078d7;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #005a9e;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Prendre un ticket</h1>
+
+  <div id="ticketNumber">-</div>
+
+  <button onclick="takeTicket()">Obtenir un ticket</button>
+
+  <script>
+    function takeTicket() {
+      fetch('/api/ticket')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('ticketNumber').textContent = data.ticket;
+        })
+        .catch(err => {
+          alert("Erreur lors de la prise du ticket : " + err);
+          console.error(err);
+        });
+    }
+  </script>
+
+</body>
+</html>

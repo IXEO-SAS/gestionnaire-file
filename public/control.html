@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestion file d'attente - Contrôle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 40px;
+      color: #333;
+    }
+    #current {
+      font-size: 5em;
+      font-weight: bold;
+      margin: 20px 0 40px;
+      color: #0078d7;
+    }
+    button {
+      font-size: 1.5em;
+      margin: 10px 15px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #0078d7;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #005a9e;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gestion de la file d'attente</h1>
+
+  <div>Numéro appelé :</div>
+  <div id="current">0</div>
+
+  <div>
+    <button onclick="prev()">⬅ Précédent</button>
+    <button onclick="next()">Suivant ➡</button>
+    <button onclick="reset()">🔄 Remise à zéro</button>
+  </div>
+
+  <script>
+    function updateDisplay() {
+      fetch('/api/current')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('current').textContent = data.current;
+        })
+        .catch(err => console.error('Erreur updateDisplay:', err));
+    }
+
+    function next() {
+      fetch('/api/next', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('current').textContent = data.current;
+        })
+        .catch(err => console.error('Erreur next:', err));
+    }
+
+    function prev() {
+      fetch('/api/prev', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('current').textContent = data.current;
+        })
+        .catch(err => console.error('Erreur prev:', err));
+    }
+
+    function reset() {
+      if (confirm("Confirmer la remise à zéro ?")) {
+        fetch('/api/reset', { method: 'POST' })
+          .then(res => res.json())
+          .then(data => {
+            updateDisplay();
+            alert(data.message);
+          })
+          .catch(err => alert("Erreur lors de la remise à zéro : " + err));
+      }
+    }
+
+    updateDisplay();
+  </script>
+
+</body>
+</html>
