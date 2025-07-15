@@ -1,9 +1,15 @@
 {
-"name": "mon-gestionnaire-file",
-"version": "1.0.0",
-"main": "api/index.js",
-"scripts": {
-"start": "node api/index.js"
-},
-"dependencies": {}
+  "name": "mon-gestionnaire-file",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.51.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0"
+  }
 }

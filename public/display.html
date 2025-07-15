@@ -26,6 +26,8 @@
       font-weight: bold;
       margin: 0;
       user-select: none;
+      color: #0078d7;
+      text-shadow: 0 0 15px #0078d7aa;
     }
   </style>
 </head>
@@ -35,14 +37,17 @@
   <div id="current">0</div>
 
   <script>
-    // Met à jour l'affichage toutes les secondes
-    function updateDisplay() {
-      fetch('/api/current')
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById('current').textContent = data.current;
-        })
-        .catch(err => console.error('Erreur updateDisplay:', err));
+    const API_BASE = "http://localhost:3000/api";
+
+    async function updateDisplay() {
+      try {
+        const res = await fetch(`${API_BASE}/current`);
+        if (!res.ok) throw new Error("Erreur HTTP " + res.status);
+        const data = await res.json();
+        document.getElementById('current').textContent = data.current;
+      } catch (err) {
+        console.error('Erreur updateDisplay:', err);
+      }
     }
 
     // Actualisation périodique toutes les secondes

@@ -50,8 +50,10 @@
   </div>
 
   <script>
+    const API_BASE = "http://localhost:3000/api";
+
     function updateDisplay() {
-      fetch('/api/current')
+      fetch(`${API_BASE}/current`)
         .then(res => res.json())
         .then(data => {
           document.getElementById('current').textContent = data.current;
@@ -60,7 +62,7 @@
     }
 
     function next() {
-      fetch('/api/next', { method: 'POST' })
+      fetch(`${API_BASE}/next`, { method: 'POST' })
         .then(res => res.json())
         .then(data => {
           document.getElementById('current').textContent = data.current;
@@ -69,7 +71,7 @@
     }
 
     function prev() {
-      fetch('/api/prev', { method: 'POST' })
+      fetch(`${API_BASE}/prev`, { method: 'POST' })
         .then(res => res.json())
         .then(data => {
           document.getElementById('current').textContent = data.current;
@@ -79,7 +81,7 @@
 
     function reset() {
       if (confirm("Confirmer la remise à zéro ?")) {
-        fetch('/api/reset', { method: 'POST' })
+        fetch(`${API_BASE}/reset`, { method: 'POST' })
           .then(res => res.json())
           .then(data => {
             updateDisplay();

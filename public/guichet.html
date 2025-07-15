@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guichet - Nouveau Ticket</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    button {
+      font-size: 24px;
+      padding: 15px 30px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .ticket {
+      margin-top: 30px;
+      font-size: 48px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎫 Prendre un ticket</h1>
+  <button onclick="getTicket()">Nouveau Ticket</button>
+
+  <div class="ticket" id="ticketDisplay"></div>
+
+  <script>
+    async function getTicket() {
+      const res = await fetch("http://localhost:3000/api/new-ticket", {
+        method: "POST",
+      });
+      const data = await res.json();
+      document.getElementById("ticketDisplay").innerText = `Ticket N° ${data.ticket}`;
+    }
+  </script>
+
+</body>
+</html>
