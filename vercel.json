@@ -1,8 +1,12 @@
 {
+  "functions": {
+    "api/index.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "rewrites": [
-    { "source": "/", "destination": "/guichet.html" },
-    { "source": "/guichet", "destination": "/guichet.html" },
-    { "source": "/control", "destination": "/control.html" },
-    { "source": "/display", "destination": "/display.html" }
+    { "source": "/guichet", "destination": "/public/guichet.html" },
+    { "source": "/control", "destination": "/public/control.html" },
+    { "source": "/display", "destination": "/public/display.html" }
   ]
 }
