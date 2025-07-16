@@ -5,8 +5,10 @@
     }
   },
   "rewrites": [
-    { "source": "/guichet", "destination": "/public/guichet.html" },
-    { "source": "/control", "destination": "/public/control.html" },
-    { "source": "/display", "destination": "/public/display.html" }
-  ]
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/guichet", "destination": "/guichet.html" },
+    { "source": "/control", "destination": "/control.html" },
+    { "source": "/display", "destination": "/display.html" }
+  ],
+  "outputDirectory": "public"
 }
