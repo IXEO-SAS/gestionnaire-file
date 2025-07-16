@@ -1,7 +1,8 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.js" }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+    { "source": "/", "destination": "/guichet.html" },
+    { "source": "/guichet", "destination": "/guichet.html" },
+    { "source": "/control", "destination": "/control.html" },
+    { "source": "/display", "destination": "/display.html" }
+  ]
 }
